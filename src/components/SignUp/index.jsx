@@ -12,7 +12,7 @@ const SignUp = () => {
                 password: password,
                 fullname: fulName
             }
-            let result = await axios.post('http://localhost:5000/liveproject/Signup', data)
+            let result = await axios.post('http://zarathos.tech:5000/liveproject/Signup', data)
             if(result){
                 window.alert("signup Success")
             }
