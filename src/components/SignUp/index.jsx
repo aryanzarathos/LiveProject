@@ -6,7 +6,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("")
     const [fulName, setFulName] = useState("")
     const handleSignup = async () => {
-        if (email &&password &&fulName) {
+        if (email && password &&fulName) {
             let data = {
                 email: email,
                 password: password,
