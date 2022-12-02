@@ -13,7 +13,7 @@ const Login = ({ setIsAuthenticated }) => {
             email: email,
             password: password,
         }
-        let result = await axios.post('https://zarathos.tech:5000/liveproject/Login', data)
+        let result = await axios.post('https://zarathos.tech/liveproject/Login', data)
         if(result){
             window.alert("Login Success")
             setIsAuthenticated(true)
