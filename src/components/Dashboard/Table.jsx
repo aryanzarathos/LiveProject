@@ -28,7 +28,7 @@ const Table = ({ employees, handleEdit, handleDelete,isLoading }) => {
           </tr>
         </thead>
         <tbody>
-          {isLoading?(employees.length > 0 ? (
+          {!isLoading?(employees.length > 0 ? (
             employees.map((employee, i) => (
               <tr key={employee.id}>
                 <td>{i + 1}</td>
