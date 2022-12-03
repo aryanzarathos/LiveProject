@@ -8,10 +8,6 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
 
-  // useEffect(() => {
-  //   setIsAuthenticated(JSON.parse(localStorage.getItem('is_authenticated')));
-  // }, []);
-
   return (
     <>
       {isAuthenticated ? (
@@ -28,10 +24,8 @@ const App = () => {
 
             ) : (
               <SignUp setIsAuthenticated={setIsAuthenticated} />
-
             )
           }
-
         </React.Fragment>
       )}
     </>

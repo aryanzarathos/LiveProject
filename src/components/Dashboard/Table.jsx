@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({ employees, handleEdit, handleDelete }) => {
+const Table = ({ employees, handleEdit, handleDelete,isLoading }) => {
   employees.forEach((employee, i) => {
     employee.id = i + 1;
   });
@@ -28,7 +28,7 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
           </tr>
         </thead>
         <tbody>
-          {employees.length > 0 ? (
+          {isLoading?(employees.length > 0 ? (
             employees.map((employee, i) => (
               <tr key={employee.id}>
                 <td>{i + 1}</td>
@@ -59,7 +59,7 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
             <tr>
               <td colSpan={7}>No Employees</td>
             </tr>
-          )}
+          )):("Loading")}
         </tbody>
       </table>
     </div>

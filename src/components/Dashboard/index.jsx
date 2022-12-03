@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-
 import Header from './Header';
 import Table from './Table';
 import Add from './Add';
 import Edit from './Edit';
-
-import { employeesData } from '../../data';
+import axios from 'axios';
 
 const Dashboard = ({ setIsAuthenticated }) => {
-  const [employees, setEmployees] = useState(employeesData);
+  useEffect(()=>{
+    apiCalling()
+  },[])
+
+  const apiCalling=async ()=>{
+    setIsLoading(true)
+    let result = await axios.get('https://zarathos.tech/liveproject/UserGet')
+    setEmployees(result)
+    setIsLoading(false)
+  }
+
+  const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('employees_data'));
@@ -21,7 +31,13 @@ const Dashboard = ({ setIsAuthenticated }) => {
 
   const handleEdit = id => {
     const [employee] = employees.filter(employee => employee.id === id);
-
+    Swal.fire({
+      icon: 'loading',
+      title: 'Loading!',
+      text: `Fetching data please wait.`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
     setSelectedEmployee(employee);
     setIsEditing(true);
   };
@@ -57,11 +73,16 @@ const Dashboard = ({ setIsAuthenticated }) => {
     <div className="container">
       {!isAdding && !isEditing && (
         <>
+        {
+          !isLoading&&
           <Header
-            setIsAdding={setIsAdding}
-            setIsAuthenticated={setIsAuthenticated}
-          />
+          setIsAdding={setIsAdding}
+          setIsAuthenticated={setIsAuthenticated}
+        />
+        }
+          
           <Table
+          isLoading={isLoading}
             employees={employees}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
