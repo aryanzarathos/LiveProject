@@ -14,7 +14,8 @@ const Dashboard = ({ setIsAuthenticated }) => {
   const apiCalling=async ()=>{
     setIsLoading(true)
     let result = await axios.get('https://zarathos.tech/liveproject/UserGet')
-    setEmployees(result)
+    console.log(result)
+    setEmployees(result.data)
     setIsLoading(false)
   }
 
