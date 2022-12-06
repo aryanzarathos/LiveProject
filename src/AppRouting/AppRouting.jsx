@@ -24,23 +24,39 @@ const AppRouting = () => {
 
     return (
         <BrowserRouter>
-            <Suspense fallback={<ShimmerLogin />} >
-                <Routes>
-                    <Route path="/Login" element={<App />} errorElement={<ErrorBoundary />} />
-                </Routes>
-            </Suspense>
-            <Suspense fallback={<ShimmerLogin />} >
-                <Routes>
-                    <Route path="/SignUp" element={<App />} errorElement={<ErrorBoundary />} />
-                </Routes>
-            </Suspense>
-            <Suspense fallback={<ShimmerLogin />} >
-                <Routes>
-                    <Route path="/dashboard" element={<Dashboard />} errorElement={<ErrorBoundary />} />
-                </Routes>
-            </Suspense>
             <Routes>
-                    <Route path="/" element={<App />} errorElement={<ErrorBoundary />} />
+                <Route path="/Login" element=
+                    {
+                        <>
+                            <Suspense fallback={<ShimmerLogin />}>
+                                <App />
+                            </Suspense>
+                        </>
+                    }
+
+                    errorElement={<ErrorBoundary />} />
+                <Route path="/SignUp" element={
+                    <>
+                        <Suspense fallback={<ShimmerLogin />}>
+                            <App />
+                        </Suspense>
+                    </>
+                } errorElement={<ErrorBoundary />} />
+                <Route path="/dashboard" element={
+                    <>
+                        <Suspense fallback={<ShimmerLogin />}>
+                            <Dashboard />
+                        </Suspense>
+                    </>
+                } errorElement={<ErrorBoundary />} />
+                <Route path="/" element={
+                    <>
+                        <Suspense fallback={<ShimmerLogin />}>
+                            <App />
+                        </Suspense>
+                    </>
+                } errorElement={<ErrorBoundary />} />
+
             </Routes>
         </BrowserRouter>
     )
